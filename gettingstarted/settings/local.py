@@ -70,7 +70,7 @@ TEMPLATES = [
     }
 ]
 
-WSGI_APPLICATION = "gettingstarted.wsgi.local.application"
+WSGI_APPLICATION = "gettingstarted.wsgi_local.application"
 
 
 # Database
