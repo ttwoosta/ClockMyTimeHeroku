@@ -70,7 +70,7 @@ TEMPLATES = [
     }
 ]
 
-WSGI_APPLICATION = "gettingstarted.wsgi.heroku.application"
+WSGI_APPLICATION = "gettingstarted.wsgi.application"
 
 
 # Database
