@@ -34,11 +34,14 @@ router.register(r'users', UserViewSet)
 # Learn more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
 
 urlpatterns = [
-    path("", hello.views.index, name="index"),
+    # path("", hello.views.index, name="index"),
     path("admin/", admin.site.urls),
 
     # Wire up our API using automatic URL routing.
     # Additionally, we include login URLs for the browsable API.
-    url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url("", include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    path("schedules/", hello.views.schedule_list),
+    path("schedules/<int:pk>/", hello.views.schedule_detail)
 ]
