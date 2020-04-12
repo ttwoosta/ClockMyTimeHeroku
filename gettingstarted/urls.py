@@ -35,7 +35,6 @@ router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path("", hello.views.index, name="index"),
-    path("db/", hello.views.db, name="db"),
     path("admin/", admin.site.urls),
 
     # Wire up our API using automatic URL routing.
