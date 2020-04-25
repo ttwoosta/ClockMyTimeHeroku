@@ -14,6 +14,12 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from hello.models import Schedule
 from hello.serializers import ScheduleSerializer
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.middleware import csrf
+from django.views.decorators.csrf import ensure_csrf_cookie
+from django.conf import settings
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -22,7 +28,12 @@ def index(request):
 
 # https://www.django-rest-framework.org/tutorial/1-serialization/#writing-regular-django-views-using-our-serializer
 
-@csrf_exempt
+
+@ensure_csrf_cookie
+def get_csrf_token(request):
+    return JsonResponse({ "csrftoken": csrf.get_token(request) }, status=200)
+
+@login_required()
 def schedule_list(request):
 
     if request.method == 'GET':
@@ -39,7 +50,8 @@ def schedule_list(request):
 
         return JsonResponse(serializer.errors, status=400)
 
-@csrf_exempt
+@login_required()
+@ensure_csrf_cookie
 def schedule_detail(request, pk):
     '''
     Retrieve, update or delete a schedule
@@ -66,3 +78,27 @@ def schedule_detail(request, pk):
     elif request.method == 'DELETE':
         schedule.delete()
         return HttpResponse(status=204)
+
+@login_required(login_url="/login/")
+def get_profile(request):
+    user = request.user
+    #user = User.objects.get(email=request.user.email)
+    if user.first_name and user.last_name:
+        fullname = user.first_name + " " + user.last_name
+    else:
+        fullname = user.username
+
+    return JsonResponse({
+            'fullname': fullname,
+            'username': user.username,
+            'email': user.email
+        }, status=200)
+
+def auth_login(request):
+    return HttpResponse(status=401)
+
+
+@csrf_exempt
+def auth_logout(request):
+    logout(request)
+    return HttpResponse(status=200)

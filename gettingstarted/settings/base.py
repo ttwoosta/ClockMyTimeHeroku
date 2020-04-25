@@ -34,12 +34,14 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "hello",
-    "rest_framework"
+    "rest_framework",
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -99,3 +101,24 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
 
 django_heroku.settings(locals())
+
+#SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+SESSION_COOKIE_DOMAIN = "localhost"
+# SESSION_COOKIE_HTTPONLY = True
+# SESSION_COOKIE_NAME = "clock-my-time-session"
+# CSRF_USE_SESSIONS = True
+
+# https://stackoverflow.com/questions/12630231/how-do-cors-and-access-control-allow-headers-work
+CSRF_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'X-XSRF-TOKEN',
+    'x-requested-with',
+]
