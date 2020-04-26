@@ -63,4 +63,4 @@ CORS_ORIGIN_WHITELIST = (
 
 CSRF_TRUSTED_ORIGINS = ['scottflaskapptutorial.herokuapp.com', 'clock-my-time.azurewebsites.net']
 
-SESSION_COOKIE_DOMAIN = "clock-my-time.azurewebsites.net"
+#SESSION_COOKIE_DOMAIN = "clock-my-time.azurewebsites.net"
