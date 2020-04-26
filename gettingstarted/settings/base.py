@@ -104,13 +104,13 @@ STATIC_URL = "/static/"
 django_heroku.settings(locals())
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
-#SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
 # SESSION_COOKIE_HTTPONLY = True
 # SESSION_COOKIE_NAME = "clock-my-time-session"
 # CSRF_USE_SESSIONS = True
 CSRF_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
-CSRF_USE_SESSIONS = True
+#CSRF_USE_SESSIONS = True
 
 # https://stackoverflow.com/questions/12630231/how-do-cors-and-access-control-allow-headers-work
 CORS_ALLOW_HEADERS = [
