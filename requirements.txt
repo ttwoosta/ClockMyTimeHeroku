@@ -5,4 +5,4 @@ requests
 djangorestframework
 markdown
 django-filter
-corsheaders
+django-cors-headers
