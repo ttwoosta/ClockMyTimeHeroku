@@ -33,7 +33,8 @@ def index(request):
 def get_csrf_token(request):
     return JsonResponse({ "csrftoken": csrf.get_token(request) }, status=200)
 
-@login_required()
+@login_required(login_url="/login/")
+@csrf_exempt
 def schedule_list(request):
 
     if request.method == 'GET':
@@ -42,16 +43,18 @@ def schedule_list(request):
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':
+        user = request.user
         data = JSONParser().parse(request)
+        data["user_id"] = user.id
         serializer = ScheduleSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=201)
+            data["id"] = serializer.data["id"]
+            return JsonResponse(data, status=201)
 
         return JsonResponse(serializer.errors, status=400)
 
 @login_required()
-@ensure_csrf_cookie
 def schedule_detail(request, pk):
     '''
     Retrieve, update or delete a schedule
