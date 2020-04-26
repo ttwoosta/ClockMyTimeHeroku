@@ -19,6 +19,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     ".herokuapp.com"
+    ".azurewebsites.net"
 ]
 
 REST_FRAMEWORK = {
