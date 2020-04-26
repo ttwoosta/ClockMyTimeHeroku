@@ -35,4 +35,5 @@ DATABASES = {
     }
 }
 
+SESSION_COOKIE_DOMAIN = "localhost"
 
