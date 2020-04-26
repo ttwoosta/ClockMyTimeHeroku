@@ -61,3 +61,5 @@ CORS_ORIGIN_WHITELIST = (
     'https://clock-my-time.azurewebsites.net',
     'https://scottflaskapptutorial.herokuapp.com'
 )
+
+CSRF_TRUSTED_ORIGINS = ['scottflaskapptutorial.herokuapp.com', 'clock-my-time.azurewebsites.net']
