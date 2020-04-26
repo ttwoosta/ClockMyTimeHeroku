@@ -18,7 +18,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    ".herokuapp.com"
+    ".herokuapp.com",
+    ".azurewebsites.net"
 ]
 
 REST_FRAMEWORK = {
@@ -61,6 +62,6 @@ CORS_ORIGIN_WHITELIST = (
     'https://scottflaskapptutorial.herokuapp.com'
 )
 
-CSRF_TRUSTED_ORIGINS = ['scottflaskapptutorial.herokuapp.com', 'clock-my-time.azurewebsites.net']
+CSRF_TRUSTED_ORIGINS = ['.herokuapp.com']
 
 #SESSION_COOKIE_DOMAIN = "clock-my-time.azurewebsites.net"
