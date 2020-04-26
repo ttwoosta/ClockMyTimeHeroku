@@ -111,6 +111,8 @@ SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 # CSRF_USE_SESSIONS = True
 CSRF_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
 #CSRF_USE_SESSIONS = True
+
+#https://docs.djangoproject.com/en/3.0/ref/settings/#std:setting-SESSION_COOKIE_SAMESITE
 CSRF_COOKIE_SAMESITE = ''
 SESSION_COOKIE_SAMESITE = ''
 

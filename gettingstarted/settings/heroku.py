@@ -64,4 +64,4 @@ CORS_ORIGIN_WHITELIST = (
 
 CSRF_TRUSTED_ORIGINS = ['.herokuapp.com']
 
-SESSION_COOKIE_DOMAIN = ".azurewebsites.net"
+SESSION_COOKIE_DOMAIN = ""
