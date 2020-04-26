@@ -110,7 +110,7 @@ SESSION_COOKIE_DOMAIN = "localhost"
 # CSRF_USE_SESSIONS = True
 
 # https://stackoverflow.com/questions/12630231/how-do-cors-and-access-control-allow-headers-work
-CSRF_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
+#CSRF_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',
