@@ -48,8 +48,10 @@ urlpatterns = [
 
     path('accounts/profile/', hello.views.get_profile),
     
+    path('accounts/login_view/', auth_views.LoginView.as_view(template_name='../hello/templates/login.html')),
     path('accounts/', include('django.contrib.auth.urls')),
 
     path('auth/login/', auth_views.LoginView.as_view()),
+    
     
 ]
