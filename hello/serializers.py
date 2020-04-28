@@ -34,3 +34,25 @@ class ScheduleSerializer(serializers.Serializer):
         instance.timeOut = validated_data.get('timeOut', instance.timeOut)
         instance.save()
         return instance
+
+class PayCheckItemSerializer(serializers.Serializer):
+    schedule_id = serializers.IntegerField(read_only=True)
+    user_id = serializers.IntegerField(read_only=True)
+    date = serializers.DateField(required=True)
+    timeIn = serializers.CharField()
+    timeOut = serializers.CharField()
+    hours = serializers.DecimalField(max_digits=5, decimal_places=2)
+    base_rate = serializers.DecimalField(required=True, max_digits=5, decimal_places=2)
+    total = serializers.DecimalField(required=True, max_digits=10, decimal_places=2)
+
+class PayCheckSerializer(serializers.Serializer):
+
+    user_id = serializers.IntegerField(required=True, source='user.id')
+    email = serializers.EmailField(source='user.email')
+
+    items = PayCheckItemSerializer(many=True)
+    total = serializers.DecimalField(required=True, max_digits=10, decimal_places=2)
+
+
+
+    

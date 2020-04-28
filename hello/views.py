@@ -12,8 +12,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
-from hello.models import Schedule
-from hello.serializers import ScheduleSerializer
+from hello.models import Schedule, PayCheck, PayCheckItem
+from hello.serializers import ScheduleSerializer, PayCheckSerializer
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.middleware import csrf
@@ -55,6 +55,7 @@ def schedule_list(request):
         return JsonResponse(serializer.errors, status=400)
 
 @login_required()
+@csrf_exempt
 def schedule_detail(request, pk):
     '''
     Retrieve, update or delete a schedule
@@ -105,3 +106,17 @@ def auth_login(request):
 def auth_logout(request):
     logout(request)
     return HttpResponse(status=200)
+
+
+@login_required(login_url="/login/")
+def my_pay_list(request):
+
+    if request.method == 'GET':
+        
+        schedules = Schedule.objects.filter(user_id=request.user.id)
+        myPay = PayCheck(request.user, schedules)
+        
+        serializer = PayCheckSerializer(myPay)
+        return JsonResponse(serializer.data, safe=False)
+
+    

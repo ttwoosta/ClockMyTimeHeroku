@@ -53,5 +53,5 @@ urlpatterns = [
 
     path('auth/login/', auth_views.LoginView.as_view()),
     
-    
+    path("my-pay/", hello.views.my_pay_list),
 ]
