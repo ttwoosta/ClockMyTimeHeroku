@@ -58,6 +58,7 @@ DATABASES = {
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
+    'https://clockmytime.azurewebsites.net',
     'https://clock-my-time.azurewebsites.net',
     'https://scottflaskapptutorial.herokuapp.com'
 )
