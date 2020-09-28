@@ -6,7 +6,7 @@ from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
 from hello.views import main as main_views
-from hello.views import ml
+from hello.views import ml as ml_views
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -56,6 +56,6 @@ urlpatterns = [
     
     path("my-pay/", main_views.my_pay_list),
 
-    path("predict_score", ml.predict_score),
-    path("breast_cancer_fig", ml.breat_cancer_fig),
+    path("predict_score", ml_views.predict_score),
+    path("breast_cancer_fig", ml_views.breat_cancer_fig),
 ]
