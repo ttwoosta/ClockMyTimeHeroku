@@ -21,7 +21,6 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from io import BytesIO
-from sendfile import sendfile
 
 def predict_score(request):
     
