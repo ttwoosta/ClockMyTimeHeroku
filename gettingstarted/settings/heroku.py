@@ -63,6 +63,6 @@ CORS_ORIGIN_WHITELIST = (
     'https://scottflaskapptutorial.herokuapp.com'
 )
 
-CSRF_TRUSTED_ORIGINS = ['.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['.azurewebsites.com']
 
 SESSION_COOKIE_DOMAIN = ""

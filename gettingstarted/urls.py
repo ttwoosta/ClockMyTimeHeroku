@@ -5,7 +5,8 @@ admin.autodiscover()
 from django.conf.urls import url, include
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
-import hello.views
+from hello.views import main as main_views
+from hello.views import ml
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -31,7 +32,7 @@ router.register(r'users', UserViewSet)
 # Learn more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
 
 urlpatterns = [
-    path("", hello.views.index, name="index"),
+    path("", main_views.index, name="index"),
     path("admin/", admin.site.urls),
 
     # Wire up our API using automatic URL routing.
@@ -39,19 +40,22 @@ urlpatterns = [
     url("api", include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
-    path("get-csrf-token/", hello.views.get_csrf_token),
-    path("schedules/", hello.views.schedule_list),
-    path("schedules/<int:pk>/", hello.views.schedule_detail),
+    path("get-csrf-token/", main_views.get_csrf_token),
+    path("schedules/", main_views.schedule_list),
+    path("schedules/<int:pk>/", main_views.schedule_detail),
 
-    path("login/", hello.views.auth_login),
-    path("logout/", hello.views.auth_logout),
+    path("login/", main_views.auth_login),
+    path("logout/", main_views.auth_logout),
 
-    path('accounts/profile/', hello.views.get_profile),
+    path('accounts/profile/', main_views.get_profile),
     
     path('accounts/login_view/', auth_views.LoginView.as_view(template_name='../hello/templates/login.html')),
     path('accounts/', include('django.contrib.auth.urls')),
 
     path('auth/login/', auth_views.LoginView.as_view()),
     
-    path("my-pay/", hello.views.my_pay_list),
+    path("my-pay/", main_views.my_pay_list),
+
+    path("predict_score", ml.predict_score),
+    path("breast_cancer_fig", ml.breat_cancer_fig),
 ]
