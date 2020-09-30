@@ -23,8 +23,14 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 
 def predict_score(request):
+    fig, ax = plt.subplots()  # Create a figure containing a single axes.
+    ax.plot([1, 2, 3, 4], [1, 4, 2, 3])  # Plot some data on the axes.
     
-    return HttpResponse("Hello world")
+    img = BytesIO()
+    fig.savefig(img)
+    img.seek(0)
+
+    return HttpResponse(img, content_type='image/png')
 
 def breat_cancer_fig(request):
 
@@ -59,14 +65,17 @@ def breat_cancer_fig(request):
         test_accuracy[i] = knn.score(X_test, y_test)
 
     # Generate plot
-    plt.title('k-NN: Varying Number of Neighbors')
-    plt.plot(neighbors, test_accuracy, label = 'Testing Accuracy')
-    plt.plot(neighbors, train_accuracy, label = 'Training Accuracy')
-    plt.legend()
-    plt.xlabel('Number of Neighbors')
-    plt.ylabel('Accuracy')
+    fig, ax = plt.subplots()
+
+    ax.set_title('k-NN: Varying Number of Neighbors')
+    ax.plot(neighbors, test_accuracy, label = 'Testing Accuracy')
+    ax.plot(neighbors, train_accuracy, label = 'Training Accuracy')
+    ax.legend()
+    ax.set_xlabel('Number of Neighbors')
+    ax.set_ylabel('Accuracy')
 
     img = BytesIO()
-    plt.savefig(img)
+    fig.savefig(img)
     img.seek(0)
+
     return HttpResponse(img, content_type='image/png')
