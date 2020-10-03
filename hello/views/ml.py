@@ -32,8 +32,7 @@ def predict_score(request):
 
     return HttpResponse(img, content_type='image/png')
 
-def breat_cancer(request):
-    return render(request, "sample.html")
+
 
 def breat_cancer_fig(request):
 
