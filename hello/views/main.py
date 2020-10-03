@@ -119,4 +119,12 @@ def my_pay_list(request):
         serializer = PayCheckSerializer(myPay)
         return JsonResponse(serializer.data, safe=False)
 
+def about(request):
+    return render(request, "about.html")
+
+def contact(request):
+    return render(request, "contact.html")
+
+    
+
     

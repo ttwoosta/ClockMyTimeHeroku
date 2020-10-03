@@ -58,4 +58,9 @@ urlpatterns = [
 
     path("predict_score", ml_views.predict_score),
     path("breast_cancer_fig", ml_views.breat_cancer_fig),
+
+    # static pages
+    path("about", main_views.about, name="about"),
+    path("contact", main_views.contact, name="contact"),
+    path("sample", ml_views.breat_cancer, name="sample")
 ]
